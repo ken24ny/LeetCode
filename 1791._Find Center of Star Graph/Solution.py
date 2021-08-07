@@ -1,15 +1,18 @@
 class Solution:
-    def findCenter(self, edges: List[List[int]]) -> int:
-        result = []
-        size = len(edges)
-        for i in range(0,size):
-            if(edges[i][0] in result):
-                return edges[i][0]
-            #result.append(edges[i][0])
-            if(edges[i][1] in result):
-                return edges[i][1]
+    def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
+        queue = []
 
-            result.extend([edges[i][0],edges[i][1]])
-            #result.append(edges[i][1])
-
-# Can (2,1) and (1,2) both exist?
+        queue.append(cloned)
+       
+        while len(queue) > 0:
+             node = queue.pop()
+             
+             if node.val == target.val:
+                 return node
+                 
+             else:
+                 if node.left is not None:
+                    queue.append(node.left)
+                    
+                 if node.right is not None:
+                    queue.append(node.right)            
